@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import com.xwray.groupie.Group
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import kotlinx.android.synthetic.main.notification_list_fragment.*
@@ -15,6 +17,8 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class NotificationListFragment : Fragment() {
     private val viewModel by viewModel<NotificationListViewModel>()
+    private val adapter = GroupAdapter<GroupieViewHolder>()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,11 +29,18 @@ class NotificationListFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val groupAdapter = GroupAdapter<GroupieViewHolder>()
 
-        notification_list.adapter = groupAdapter
-        val items =
-            listOf(Notification(1, "title1", "content1"), Notification(2, "title2", "content2"))
-        items.forEach { item -> groupAdapter.add(NotificationListItem(item)) }
+        notification_list.adapter = adapter
+        viewModel.notifications.observe(viewLifecycleOwner, Observer {
+            it?.let { updateNotificationList(it) }
+        })
+    }
+
+    private fun updateNotificationList(notificationList: List<Notification>) {
+        adapter.update(mutableListOf<Group>().apply {
+            notificationList.forEach { notification ->
+                NotificationListItem(notification)
+            }
+        })
     }
 }

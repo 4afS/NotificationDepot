@@ -29,8 +29,9 @@ class NotificationDepotApp : Application() {
                 get(),
                 NotificationDepotDatabase::class.java,
                 "notification-database"
-            )
+            ).build()
         }
+        single { get<NotificationDepotDatabase>().notificationDao() }
     }
 
     override fun onCreate() {
