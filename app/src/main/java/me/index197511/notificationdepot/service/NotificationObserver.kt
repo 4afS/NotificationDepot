@@ -2,26 +2,35 @@ package me.index197511.notificationdepot.service
 
 import android.app.Service
 import android.content.Intent
-import android.os.IBinder
-import me.index197511.notificationdepot.ext.notificationManager
+import android.service.notification.NotificationListenerService
+import android.service.notification.StatusBarNotification
+import android.util.Log
 import me.index197511.notificationdepot.notification.ObservingNotificationProducer
-import org.koin.core.KoinComponent
 
-class NotificationObserver : Service(), KoinComponent {
-
+class NotificationObserver : NotificationListenerService() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        Log.i("DebugPrint", "onStartCommand called.")
         with(ObservingNotificationProducer) {
             startForeground(NOTIFICATION_ID, get())
         }
-        super.onStartCommand(intent, flags, startId)
-        return START_STICKY
+        return Service.START_NOT_STICKY
+    }
+
+    override fun onNotificationPosted(sbn: StatusBarNotification?) {
+        Log.i("DebugPrint", "onNotificationPosted called")
+        notificationLog(sbn)
+        super.onNotificationPosted(sbn)
     }
 
     override fun onDestroy() {
+        Log.i("DebugPrint", "onDestroy called")
         super.onDestroy()
-        notificationManager.cancel(ObservingNotificationProducer.NOTIFICATION_ID)
     }
 
-    override fun onBind(intent: Intent?): IBinder? = null
-
+    private fun notificationLog(sbn: StatusBarNotification?) {
+        Log.i(
+            "DebugPrint",
+            "id: ${sbn?.id}, packageName: ${sbn?.packageName}, time: ${sbn?.postTime}"
+        )
+    }
 }
