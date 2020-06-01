@@ -29,6 +29,12 @@ class NotificationObserver : NotificationListenerService() {
         super.onNotificationPosted(sbn)
     }
 
+    override fun onNotificationRemoved(sbn: StatusBarNotification?) {
+        notificationLog(sbn)
+        removeNotification(sbn)
+        super.onNotificationRemoved(sbn)
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         notificationManager.cancel(ObservingNotificationProducer.NOTIFICATION_ID)
@@ -48,6 +54,21 @@ class NotificationObserver : NotificationListenerService() {
         }
     }
 
+    private fun removeNotification(sbn: StatusBarNotification?) {
+        GlobalScope.launch {
+            sbn?.let {
+                notificationRepository.remove(
+                    Notification(
+                        id = it.id,
+                        packageName = it.packageName,
+                        content = it.notification?.tickerText.toString()
+                    )
+                )
+            }
+        }
+    }
+
+    // use for debug
     private fun notificationLog(sbn: StatusBarNotification?) {
         Log.i(
             "DebugPrint",

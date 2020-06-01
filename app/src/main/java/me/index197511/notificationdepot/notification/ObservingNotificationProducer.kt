@@ -10,7 +10,7 @@ import org.koin.core.inject
 
 object ObservingNotificationProducer : KoinComponent {
     const val NOTIFICATION_ID = 9080
-    private const val CHANNEL_ID = "Observer"
+    private const val CHANNEL_ID = "NotificationObserver"
     private const val CHANNEL_NAME = "Stationed Notification"
 
     private val context by inject<Context>()
