@@ -10,6 +10,9 @@ data class NotificationEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
 
+    @ColumnInfo(name = "package_id")
+    val packageId: Int,
+
     @ColumnInfo(name = "package_name")
     val packageName: String,
 
@@ -17,8 +20,8 @@ data class NotificationEntity(
     val content: String
 ) {
     fun toModel(): Notification =
-        Notification(id, packageName, content)
+        Notification(packageId, packageName, content)
 }
 
 fun Notification.toEntity(): NotificationEntity =
-    NotificationEntity(id, packageName, content)
+    NotificationEntity(0, packageId, packageName, content)

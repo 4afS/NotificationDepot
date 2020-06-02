@@ -10,7 +10,11 @@ interface NotificationDao {
 
     @Delete
     suspend fun deleteNotification(notification: NotificationEntity)
+    
+    @Query("DELETE FROM notifications")
+    suspend fun deleteAll()
 
     @Query("SELECT * FROM notifications ORDER BY id DESC")
     suspend fun getAll(): List<NotificationEntity>
+
 }
