@@ -6,12 +6,12 @@ import me.index197511.notificationdepot.service.NotificationObserver
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
-interface INotificationObserverRepository {
+interface INotificationObserverManager {
     fun enableObserver()
     fun disableObserver()
 }
 
-class NotificationObserverRepository : INotificationObserverRepository, KoinComponent {
+class NotificationObserverManager : INotificationObserverManager, KoinComponent {
     private val context by inject<Context>()
 
     override fun enableObserver() {

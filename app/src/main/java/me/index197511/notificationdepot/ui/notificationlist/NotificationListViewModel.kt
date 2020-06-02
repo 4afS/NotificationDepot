@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import me.index197511.notificationdepot.service.model.Notification
-import me.index197511.notificationdepot.service.repository.NotificationObserverRepository
+import me.index197511.notificationdepot.service.repository.NotificationObserverManager
 import me.index197511.notificationdepot.service.repository.NotificationRepository
 import org.koin.core.KoinComponent
 import org.koin.core.inject
@@ -16,7 +16,7 @@ import org.koin.core.inject
 class NotificationListViewModel : ViewModel(), KoinComponent {
     private val context by inject<Context>()
     private val notificationRepository by inject<NotificationRepository>()
-    private val notificationObserverRepository by inject<NotificationObserverRepository>()
+    private val notificationObserverRepository by inject<NotificationObserverManager>()
     private val _notifications = MutableLiveData<List<Notification>>()
 
     val notifications: LiveData<List<Notification>>
@@ -36,6 +36,13 @@ class NotificationListViewModel : ViewModel(), KoinComponent {
 
     fun updateNotificationList() {
         getAllNotification()
+    }
+
+    fun removeAllNotification() {
+        viewModelScope.launch {
+            notificationRepository.removeAll()
+        }
+        updateNotificationList()
     }
 
     fun switchObserverEnabled() {

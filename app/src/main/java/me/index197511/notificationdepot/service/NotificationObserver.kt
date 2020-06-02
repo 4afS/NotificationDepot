@@ -18,7 +18,7 @@ class NotificationObserver : NotificationListenerService() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         with(ObservingNotificationProducer) {
-            startForeground(NOTIFICATION_ID, get())
+            startForeground(NOTIFICATION_ID, generateNotification())
         }
         return Service.START_NOT_STICKY
     }

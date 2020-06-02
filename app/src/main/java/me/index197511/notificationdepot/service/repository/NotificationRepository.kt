@@ -11,6 +11,7 @@ import org.koin.core.inject
 interface INotificationRepository {
     suspend fun add(notification: Notification)
     suspend fun remove(notification: Notification)
+    suspend fun removeAll()
     suspend fun loadAll(): List<Notification>
 }
 
@@ -29,9 +30,16 @@ class NotificationRepository : INotificationRepository, KoinComponent {
         }
     }
 
+    override suspend fun removeAll() {
+        withContext(Dispatchers.IO) {
+            notificationDao.deleteAll()
+        }
+    }
+
     override suspend fun loadAll(): List<Notification> {
         return withContext(Dispatchers.IO) {
             notificationDao.getAll().map { e -> e.toModel() }
         }
     }
+
 }

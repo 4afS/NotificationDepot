@@ -41,6 +41,10 @@ class NotificationListFragment : Fragment() {
         binding.buttonNavToNotificationSettings.setOnClickListener {
             navToSettingNotificationListener()
         }
+
+        binding.buttonRemoveAll.setOnClickListener {
+            viewModel.removeAllNotification()
+        }
     }
 
     override fun onResume() {

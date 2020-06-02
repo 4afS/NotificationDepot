@@ -24,10 +24,10 @@ object ObservingNotificationProducer : KoinComponent {
         setShowBadge(false)
     }
 
-    fun get(): Notification {
+    fun generateNotification(): Notification {
         return NotificationCompat.Builder(context, CHANNEL_ID)
             .apply {
-                setContentText("Observing")
+                setContentText("ObservingNotification.....")
             }
             .build()
     }
