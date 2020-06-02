@@ -25,7 +25,7 @@ class NotificationObserver : NotificationListenerService() {
 
     override fun onNotificationPosted(sbn: StatusBarNotification?) {
         notificationLog(sbn)
-        addNotification(sbn)
+        if (sbn?.id != 9080) addNotification(sbn)
         super.onNotificationPosted(sbn)
     }
 
@@ -45,7 +45,7 @@ class NotificationObserver : NotificationListenerService() {
             sbn?.let {
                 notificationRepository.add(
                     Notification(
-                        id = it.id,
+                        packageId = it.id,
                         packageName = it.packageName,
                         content = it.notification?.tickerText.toString()
                     )
@@ -59,7 +59,7 @@ class NotificationObserver : NotificationListenerService() {
             sbn?.let {
                 notificationRepository.remove(
                     Notification(
-                        id = it.id,
+                        packageId = it.id,
                         packageName = it.packageName,
                         content = it.notification?.tickerText.toString()
                     )
