@@ -1,5 +1,6 @@
 package me.index197511.notificationdepot.ui.notificationlist.notificationitem
 
+import androidx.recyclerview.widget.ItemTouchHelper
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import com.xwray.groupie.kotlinandroidextensions.Item
 import kotlinx.android.synthetic.main.notification_list_item.*
@@ -13,4 +14,7 @@ class NotificationListItem(private val notification: Notification) : Item() {
         viewHolder.notification_title.text = notification.packageName
         viewHolder.notification_content.text = notification.content
     }
+
+    override fun getDragDirs(): Int =
+        ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
 }
