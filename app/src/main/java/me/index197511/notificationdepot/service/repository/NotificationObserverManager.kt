@@ -2,7 +2,6 @@ package me.index197511.notificationdepot.service.repository
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import me.index197511.notificationdepot.service.NotificationObserver
 import org.koin.core.KoinComponent
 import org.koin.core.inject
@@ -20,6 +19,6 @@ class NotificationObserverManager : INotificationObserverManager, KoinComponent 
     }
 
     override fun disableObserver() {
-        Log.i("DebugPrint", " isStop ${context.stopService(Intent(context, NotificationObserver::class.java))}")
+        context.stopService(Intent(context, NotificationObserver::class.java))
     }
 }

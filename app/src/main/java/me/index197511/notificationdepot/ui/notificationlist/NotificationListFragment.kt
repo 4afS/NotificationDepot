@@ -2,10 +2,7 @@ package me.index197511.notificationdepot.ui.notificationlist
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -14,6 +11,7 @@ import com.xwray.groupie.Group
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import kotlinx.android.synthetic.main.notification_list_fragment.*
+import me.index197511.notificationdepot.R
 import me.index197511.notificationdepot.databinding.NotificationListFragmentBinding
 import me.index197511.notificationdepot.service.model.Notification
 import me.index197511.notificationdepot.ui.notificationlist.decoration.SwipeTouchCallback
@@ -46,8 +44,21 @@ class NotificationListFragment : Fragment() {
             navToSettingNotificationListener()
         }
 
-        binding.buttonRemoveAll.setOnClickListener {
-            viewModel.removeAllNotification()
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.main_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.delete_all -> {
+                viewModel.removeAllNotification()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
