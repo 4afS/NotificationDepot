@@ -20,8 +20,8 @@ data class NotificationEntity(
     val content: String
 ) {
     fun toModel(): Notification =
-        Notification(packageId, packageName, content)
+        Notification(id, packageId, packageName, content)
 }
 
 fun Notification.toEntity(): NotificationEntity =
-    NotificationEntity(0, packageId, packageName, content)
+    NotificationEntity(pk, packageId, packageName, content)

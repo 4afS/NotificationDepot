@@ -1,6 +1,7 @@
 package me.index197511.notificationdepot.ui.notificationlist
 
 import android.content.Context
+import android.util.Log
 import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -41,6 +42,16 @@ class NotificationListViewModel : ViewModel(), KoinComponent {
     fun removeAllNotification() {
         viewModelScope.launch {
             notificationRepository.removeAll()
+        }
+        updateNotificationList()
+    }
+
+    fun removeSpecifyNotification(position: Int) {
+        viewModelScope.launch {
+            _notifications.value?.get(position)?.let {
+                Log.i("DebugPrint", "removed $it")
+                notificationRepository.remove(it)
+            }
         }
         updateNotificationList()
     }

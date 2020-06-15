@@ -11,7 +11,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        >
         <service
             android:name=".service.NotificationObserver"
             android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
@@ -19,7 +20,8 @@
                 <action android:name="android.service.notification.NotificationListenerService" />
             </intent-filter>
         </service>
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:configChanges="">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

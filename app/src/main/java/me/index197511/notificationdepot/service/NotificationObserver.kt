@@ -20,7 +20,7 @@ class NotificationObserver : NotificationListenerService() {
         with(ObservingNotificationProducer) {
             startForeground(NOTIFICATION_ID, generateNotification())
         }
-        return Service.START_NOT_STICKY
+        return Service.START_STICKY
     }
 
     override fun onNotificationPosted(sbn: StatusBarNotification?) {
@@ -45,6 +45,7 @@ class NotificationObserver : NotificationListenerService() {
             sbn?.let {
                 notificationRepository.add(
                     Notification(
+                        pk = 0,
                         packageId = it.id,
                         packageName = it.packageName,
                         content = it.notification?.tickerText.toString()
@@ -59,6 +60,7 @@ class NotificationObserver : NotificationListenerService() {
             sbn?.let {
                 notificationRepository.remove(
                     Notification(
+                        pk = 0,
                         packageId = it.id,
                         packageName = it.packageName,
                         content = it.notification?.tickerText.toString()
