@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">NotificationDepot</string>
-    <!-- Preference Titles -->
+    <string name="text_button_delete_all">Delete All</string>
 
-    <!-- Messages Preferences -->
-
-    <!-- Sync Preferences -->
 </resources>
