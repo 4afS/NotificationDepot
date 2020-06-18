@@ -3,7 +3,5 @@
     <item
         android:id="@+id/notificationListFragment"
         android:title="NotificationList" />
-    <item
-        android:id="@+id/settingsFragment"
-        android:title="Setting" />
+    <item android:title="Setting" />
 </menu>

@@ -1,6 +1,5 @@
 package me.index197511.notificationdepot.ui.notificationlist
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -91,11 +90,4 @@ class NotificationListFragment : Fragment() {
         })
     }
 
-    private fun navToSettingNotificationListener() {
-        val intentToSettingNotificationListener =
-            Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS")
-        intentToSettingNotificationListener.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        context?.startActivity(intentToSettingNotificationListener)
-    }
-    
 }
