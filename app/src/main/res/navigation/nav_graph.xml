@@ -2,12 +2,19 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
     app:startDestination="@id/notificationListFragment">
 
     <fragment
         android:id="@+id/notificationListFragment"
         android:name="me.index197511.notificationdepot.ui.notificationlist.NotificationListFragment"
         android:label="notification_list_fragment"
-        tools:layout="@layout/notification_list_fragment" />
+        tools:layout="@layout/notification_list_fragment" >
+        <action
+            android:id="@+id/action_notificationListFragment_to_settingsFragment2"
+            app:destination="@id/settingsFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment2"
+        android:name="me.index197511.notificationdepot.ui.settings.SettingsFragment"
+        android:label="SettingsFragment" />
 </navigation>

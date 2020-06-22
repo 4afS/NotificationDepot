@@ -1,10 +1,10 @@
 package me.index197511.notificationdepot.ui.notificationlist
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.xwray.groupie.Group
@@ -22,6 +22,17 @@ class NotificationListFragment : Fragment() {
     private val viewModel by viewModel<NotificationListViewModel>()
     private val adapter = GroupAdapter<GroupieViewHolder>()
     private lateinit var binding: NotificationListFragmentBinding
+    private val touchCallback: SwipeTouchCallback by lazy {
+        object : SwipeTouchCallback() {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                viewModel.removeSpecifyNotification(viewHolder.adapterPosition)
+                adapter.apply {
+                    notifyItemRemoved(viewHolder.adapterPosition)
+                    notifyDataSetChanged()
+                }
+            }
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,8 +51,8 @@ class NotificationListFragment : Fragment() {
             it?.let { updateNotificationList(it) }
         })
 
-        binding.buttonNavToNotificationSettings.setOnClickListener {
-            navToSettingNotificationListener()
+        binding.buttonAllRemove.setOnClickListener {
+            viewModel.removeAllNotification()
         }
 
         setHasOptionsMenu(true)
@@ -54,8 +65,8 @@ class NotificationListFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.delete_all -> {
-                viewModel.removeAllNotification()
+            R.id.button_nav_to_settings -> {
+                findNavController().navigate(R.id.action_notificationListFragment_to_settingsFragment2)
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -78,25 +89,5 @@ class NotificationListFragment : Fragment() {
             }
         })
     }
-
-    private fun navToSettingNotificationListener() {
-        val intentToSettingNotificationListener =
-            Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS")
-        intentToSettingNotificationListener.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        context?.startActivity(intentToSettingNotificationListener)
-    }
-
-    private val touchCallback: SwipeTouchCallback by lazy {
-        object : SwipeTouchCallback() {
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                viewModel.removeSpecifyNotification(viewHolder.adapterPosition)
-                adapter.apply {
-                    notifyItemRemoved(viewHolder.adapterPosition)
-                    notifyDataSetChanged()
-                }
-            }
-        }
-    }
-
 
 }

@@ -27,4 +27,20 @@ class MainActivity : AppCompatActivity() {
         return NavigationUI.navigateUp(navController, drawer)
     }
 
+//    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+//        Log.i("DebugPrint", "onNavigationItemSelected")
+//        when (item.itemId) {
+//            R.id.notification_list_fragment ->
+//                NotificationListFragment()
+//            R.id.settings_fragment ->
+//                NotificationDepotSettingsFragment()
+//            else -> null
+//        }?.let {
+//            val ft = supportFragmentManager.beginTransaction()
+//            ft.replace(R.id.nav_host_fragment, it)
+//            ft.commit()
+//        }
+//        drawer.closeDrawer(GravityCompat.START)
+//        return true
+//    }
 }

@@ -10,10 +10,10 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/button_nav_to_notification_settings"
+            android:id="@+id/button_all_remove"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Setting"
+            android:text="@string/text_button_delete_all"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -26,7 +26,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_nav_to_notification_settings" />
+            app:layout_constraintTop_toBottomOf="@+id/button_all_remove" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
