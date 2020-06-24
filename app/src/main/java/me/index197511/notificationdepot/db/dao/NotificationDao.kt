@@ -10,7 +10,7 @@ interface NotificationDao {
 
     @Delete
     suspend fun deleteNotification(notification: NotificationEntity)
-    
+
     @Query("DELETE FROM notifications")
     suspend fun deleteAll()
 

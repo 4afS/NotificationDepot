@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.room.Room
 import me.index197511.notificationdepot.db.NotificationDepotDatabase
 import me.index197511.notificationdepot.ext.notificationManager
-import me.index197511.notificationdepot.notification.ObservingNotificationProducer
+import me.index197511.notificationdepot.service.notification.ObservingNotificationProducer
 import me.index197511.notificationdepot.service.repository.NotificationObserverManager
 import me.index197511.notificationdepot.service.repository.NotificationRepository
 import me.index197511.notificationdepot.ui.notificationlist.NotificationListViewModel

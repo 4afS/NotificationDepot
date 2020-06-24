@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">NotificationDepot</string>
-    <string name="text_button_delete_all">Delete All</string>
+    <string name="description_for_image_button">Delete all Notification</string>
 
 </resources>

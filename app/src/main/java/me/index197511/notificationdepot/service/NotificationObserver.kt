@@ -8,8 +8,8 @@ import android.util.Log
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import me.index197511.notificationdepot.ext.notificationManager
-import me.index197511.notificationdepot.notification.ObservingNotificationProducer
 import me.index197511.notificationdepot.service.model.Notification
+import me.index197511.notificationdepot.service.notification.ObservingNotificationProducer
 import me.index197511.notificationdepot.service.repository.NotificationRepository
 import org.koin.android.ext.android.inject
 

@@ -1,4 +1,4 @@
-package me.index197511.notificationdepot.notification
+package me.index197511.notificationdepot.service.notification
 
 import android.app.Notification
 import android.app.NotificationChannel
