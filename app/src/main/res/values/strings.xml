@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">NotificationDepot</string>
     <string name="description_for_image_button">Delete all Notification</string>
+    <string name="text_for_drawer_notification">NotificationList</string>
 
 </resources>

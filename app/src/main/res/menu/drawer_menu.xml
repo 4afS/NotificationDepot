@@ -2,6 +2,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/notificationListFragment"
-        android:title="NotificationList" />
-    <item android:title="Setting" />
+        android:title="@string/text_for_drawer_notification" />
 </menu>
